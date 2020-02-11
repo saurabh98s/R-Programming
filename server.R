@@ -21,5 +21,10 @@ shinyServer(function(input,output){
     filename = function(){
       paste('data-',Sys.Date(),'.csv',sep='')
     },
+    content = function(con){
+      data("df_state_demographics")
+      data = df_state_demographics[,c('region',input$select)]
+      write.csv(data,con)
+    }
   )
 })
